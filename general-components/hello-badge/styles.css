@@ -1,3 +1,8 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
 .badge {
     border-radius: 15px;
     background-color: lightcoral;
@@ -9,12 +14,14 @@
 
 h1, h2 {
     padding: 2px;
-    margin: 0;
 }
 
 .content {
     background-color: white;
     width: 500px;
-    height: 250px;
-    margin-bottom: 30px;
+    height: 200px;
+    margin-bottom: 20px;
+    font-size: 60px;
+    color: black;
+    font-family: cursive;
 }
