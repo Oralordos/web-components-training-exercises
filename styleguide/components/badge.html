@@ -4,6 +4,7 @@
         * {
             padding: 0;
             margin: 0;
+            box-sizing: border-box;
         }
 
         .badge {
@@ -12,21 +13,36 @@
             color: white;
             text-align: center;
             display: inline-block;
-            padding: 5px
+            padding: 5px 5px 20px 5px;
+            transform: rotate(-7deg);
+            margin: 40px 20px;
+            box-shadow: -1px 1px 3px 1px black;
+        }
+
+        h1 {
+            font-size: 40px;
+        }
+
+        h2 {
+            font-size: 30px;
         }
 
         h1, h2 {
             padding: 2px;
+            font-family: serif;
         }
 
         .content {
             background-color: white;
             width: 500px;
             height: 200px;
-            margin-bottom: 20px;
-            font-size: 60px;
+            overflow: hidden;
+            font-size: 80px;
             color: black;
             font-family: cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
     <!-- Add HTML for your component here.
@@ -35,7 +51,7 @@
         <h1>Hello</h1>
         <h2>My name is:</h2>
         <div class="content">
-            <h3>Daniel</h3>
+            <h3><content></content></h3>
         </div>
     </section>
 </template>
