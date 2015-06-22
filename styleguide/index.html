@@ -9,7 +9,7 @@
     <link href="vendor/bootstrap.min.css" rel="stylesheet">
 
     <link href="vendor/docs.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
     <style>.navbar-brand { font-size: 250%; line-height: 1.2; margin: 20px 0; }</style>
 
 </head>
@@ -57,6 +57,30 @@
                 <!-- Component code example -->
                 <div class="highlight"><code class="html"><h3 style="color: blue;">Hello again.</h3></code></div>
 
+                <!-- Component title -->
+                <h2 id="hello-badge">Hello Badge</h2>
+                <!-- Component description -->
+                <p>Lorem ipsum.</p>
+                <!-- Component code -->
+                <iframe width=514 height=297 src="../general-components/hello-badge/index.html" frameborder="0"></iframe>
+                <!-- Component code example -->
+                <div class="highlight"><code class="html"><section class="badge">
+                    <h1>Hello</h1>
+                    <h2>My name is:</h2>
+                    <div class="content">
+                        <h3>Daniel</h3>
+                    </div>
+                </section></code></div>
+
+                <!-- Component title -->
+                <h2 id="spinner">Spinner</h2>
+                <!-- Component description -->
+                <p>Lorem ipsum.</p>
+                <!-- Component code -->
+                <iframe width=200 height=100 src="../general-components/waiting-spinner/index.html" frameborder="0"></iframe>
+                <!-- Component code example -->
+                <div class="highlight"><code class="html"><p>Testing the <span class="spinner">Loading</span> screen</p></code></div>
+
 
             </div>
         </div>
@@ -66,11 +90,13 @@
                 <ul class="nav bs-docs-sidenav">
 
 
-                    <li class="">
+                    <li>
                         <a href="#first-component-group">Component Group</a>
                         <ul class="nav">
-                            <li class=""><a href="#first-component">First Component</a></li>
-                            <li class=""><a href="#second-component">Second Component</a></li>
+                            <li><a href="#first-component">First Component</a></li>
+                            <li><a href="#second-component">Second Component</a></li>
+                            <li><a href="#hello-badge">Hello Badge</a></li>
+                            <li><a href="#spinner">Spinner</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -91,14 +117,14 @@
 
     </div>
 </footer>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
 <script>
 
 function escapeHtml(str) {
 var div = document.createElement('div');
 div.appendChild(document.createTextNode(str));
 return div.innerHTML;
-};
+}
 
 var codeNodes = Array.prototype.slice.call(document.querySelectorAll('code'));
 codeNodes.forEach(function(el) { el.innerHTML = escapeHtml(el.innerHTML); });
