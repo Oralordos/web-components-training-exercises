@@ -20,6 +20,28 @@
     Try adding <content></content> to project from the light DOM -->
     <span class="spinner"><content></content></span>
 </template>
+<template id="template2">
+    <style>
+        /* Add some styles here */
+        .rSpinner {
+            display: inline;
+            animation: spin 1s linear infinite reverse;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <!-- Add HTML for your component here.
+    Try adding <content></content> to project from the light DOM -->
+    <span class="rSpinner"><content></content></span>
+</template>
 <script>
     var createElement = function(tagName, templateId, basePrototype) {
         basePrototype = basePrototype || HTMLElement.prototype;
@@ -36,4 +58,5 @@
     };
     // Initialize your component here with the above function!
     createElement('my-spinner', 'template');
+    createElement('my-spinner-reverse', 'template2');
 </script>

@@ -1,0 +1,55 @@
+<template id="template">
+    <style>
+        #slider {
+            min-width: 400px;
+            min-height: 200px;
+            overflow: hidden;
+        }
+    </style>
+    <!-- Add HTML for your component here.
+    Try adding <content></content> to project from the light DOM -->
+    <section id="slider"><content></content></section>
+</template>
+<script>
+    function slideNext(shadowRoot) {
+        return function() {
+            var nodes = shadowRoot.nodesData;
+            shadowRoot.currentNode = (shadowRoot.currentNode + 1) % nodes.length;
+            for (var i = 0; i < nodes.length; i++) {
+                nodes[i].style.display = 'none';
+            }
+            nodes[shadowRoot.currentNode].style.display = '';
+        }
+    }
+
+    function loader(shadowRoot) {
+        var nodes = shadowRoot.querySelector('content').getDistributedNodes();
+        shadowRoot.nodesData = [];
+        shadowRoot.currentNode = 0;
+        for (var i = 0; i < nodes.length; i++) {
+            var node = nodes[i];
+            if (node.nodeType === 1) {
+                shadowRoot.nodesData.push(node);
+                node.style.display = 'none';
+            }
+        }
+        setInterval(slideNext(shadowRoot), 1000);
+    }
+
+    var createElement = function(tagName, templateId, basePrototype) {
+        basePrototype = basePrototype || HTMLElement.prototype;
+        var template = document.currentScript.ownerDocument.getElementById(templateId).content;
+        var customElementPrototype = Object.create(basePrototype);
+        customElementPrototype.createdCallback = function() {
+            var shadowRoot = this.createShadowRoot();
+            var clone = document.importNode(template, true);
+            shadowRoot.appendChild(clone);
+            loader(shadowRoot);
+        };
+        return document.registerElement(tagName, {
+            prototype: customElementPrototype
+        });
+    };
+    // Initialize your component here with the above function!
+    createElement('my-slider', 'template');
+</script>

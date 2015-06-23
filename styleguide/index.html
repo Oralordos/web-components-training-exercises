@@ -13,6 +13,7 @@
     <link rel="import" href="components/badge.html">
     <link rel="import" href="components/spinner.html">
     <link rel="import" href="components/button.html">
+    <link rel="import" href="components/slider.html">
     <style>.navbar-brand { font-size: 250%; line-height: 1.2; margin: 20px 0; }</style>
 
 </head>
@@ -74,9 +75,9 @@
                 <!-- Component description -->
                 <p>Lorem ipsum.</p>
                 <!-- Component code -->
-                <p>Testing the <my-spinner>Loading</my-spinner> screen</p>
+                <p>Testing the<my-spinner> Loading </my-spinner> <my-spinner-reverse>screen</my-spinner-reverse></p>
                 <!-- Component code example -->
-                <div class="highlight"><code class="html"><p>Testing the <my-spinner>Loading</my-spinner> screen</p></code></div>
+                <div class="highlight"><code class="html"><p>Testing the<my-spinner> Loading </my-spinner> <my-spinner-reverse>screen</my-spinner-reverse></p></code></div>
 
                 <!-- Component title -->
                 <h2 id="button">Button</h2>
@@ -86,6 +87,27 @@
                 <my-button>Testing</my-button>
                 <!-- Component code example -->
                 <div class="highlight"><code class="html"><my-button>Testing</my-button></code></div>
+
+                <!-- Component title -->
+                <h2 id="slider">Slider</h2>
+                <!-- Component description -->
+                <p>Lorem ipsum.</p>
+                <!-- Component code -->
+                <my-slider>
+                    <img src="http://lorempixel.com/200/200/abstract/1"/>
+                    <img src="http://lorempixel.com/200/200/abstract/2"/>
+                    <img src="http://lorempixel.com/200/200/abstract/3"/>
+                    <img src="http://lorempixel.com/200/200/abstract/4"/>
+                </my-slider>
+                <!-- Component code example -->
+                <div class="highlight"><code class="html">
+                    <my-slider>
+                        <img src="http://lorempixel.com/200/200/abstract/1"/>
+                        <img src="http://lorempixel.com/200/200/abstract/2"/>
+                        <img src="http://lorempixel.com/200/200/abstract/3"/>
+                        <img src="http://lorempixel.com/200/200/abstract/4"/>
+                    </my-slider>
+                </code></div>
 
 
             </div>
@@ -104,6 +126,7 @@
                             <li><a href="#hello-badge">Hello Badge</a></li>
                             <li><a href="#spinner">Spinner</a></li>
                             <li><a href="#button">Button</a></li>
+                            <li><a href="#slider">Slider</a></li>
                         </ul>
                     </li>
                 </ul>
