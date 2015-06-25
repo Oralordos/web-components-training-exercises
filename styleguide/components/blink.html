@@ -9,17 +9,20 @@
         var interval = parseInt(this.getAttribute('interval')) || 1000;
         this.timeoutId = setTimeout(toggleStyle.bind(this), interval);
         var item = this.shadowRoot.querySelector('#showing');
-        item.currentSetting = !item.currentSetting;
         var styleText = this.getAttribute('styles') || 'visibility: hidden';
-        var styles = styleText.split(',');
+        var styleLevels = styleText.split('/');
+        item.currentSetting = (item.currentSetting + 1) % (styleLevels.length + 1);
+        var styles = item.currentSetting ? styleLevels[item.currentSetting - 1].split(',') : [];
+        clearStyle.call(this);
         styles.forEach(function(style) {
-            keyVal = style.split(':');
-            item.style[keyVal[0].trim()] = item.currentSetting ? keyVal[1].trim() : '';
+            var keyVal = style.split(':');
+            item.style[keyVal[0].trim()] = keyVal[1].trim();
         });
     }
 
     function loader() {
-        clearStyle.call(this);
+        var item = this.shadowRoot.querySelector('#showing');
+        item.currentSetting = 0;
         var interval = parseInt(this.getAttribute('interval')) || 1000;
         this.timeoutId = setTimeout(toggleStyle.bind(this), interval);
     }
@@ -35,7 +38,6 @@
                 item.style[key] = '';
             }
         }
-        item.currentSetting = 0;
     }
 
     var proto = Object.create(HTMLElement.prototype);
