@@ -1,0 +1,27 @@
+<template id="template">
+    <content></content>
+</template>
+<script src="../createElement.js"></script>
+<script>
+    function toggleBlink() {
+        var interval = parseInt(this.getAttribute('interval')) || 1000;
+        this.timeoutId = setTimeout(toggleBlink.bind(this), interval);
+        var item = this;
+        item.style.visibility = item.style.visibility === 'hidden' ? 'visible' : 'hidden';
+
+    }
+
+    function loader() {
+        var interval = parseInt(this.getAttribute('interval')) || 1000;
+        this.timeoutId = setTimeout(toggleBlink.bind(this), interval);
+    }
+
+    function cleanUp() {
+        clearTimeout(this.timeoutId);
+    }
+
+    var proto = Object.create(HTMLElement.prototype);
+    proto.createdCallback = loader;
+    proto.detachedCallback = cleanUp;
+    window.MyBlink = createElement('my-blink', '#template', proto);
+</script>
