@@ -36,11 +36,26 @@
                 node.style.display = 'none';
             }
         }
-        setInterval(slideNext.bind(this), 1000);
+        var interval = this.getAttribute('interval') || 1000;
+        this.intervalId = setInterval(slideNext.bind(this), interval);
     }
+
+    function changeInterval(name, oldVal, newVal) {
+        if (name === 'interval') {
+            clearInterval(this.intervalId);
+            this.intervalId = setInterval(slideNext.bind(this), newVal)
+        }
+    }
+
+    function deleteItem() {
+        clearInterval(this.intervalId);
+    }
+
 
     var proto = Object.create(HTMLElement.prototype);
     proto.createdCallback = loader;
+    proto.attributeChangedCallback = changeInterval;
+    proto.detachedCallback = deleteItem;
     proto.slideNext = slideNext;
-    createElement('my-slider', '#template', proto);
+    window.MySlider = createElement('my-slider', '#template', proto);
 </script>
