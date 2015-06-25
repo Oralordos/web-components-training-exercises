@@ -1,12 +1,14 @@
 <template id="template">
-    <content></content>
+    <div id="showing">
+        <content></content>
+    </div>
 </template>
 <script src="../createElement.js"></script>
 <script>
     function toggleBlink() {
         var interval = parseInt(this.getAttribute('interval')) || 1000;
         this.timeoutId = setTimeout(toggleBlink.bind(this), interval);
-        var item = this;
+        var item = this.shadowRoot.querySelector('#showing');
         item.style.visibility = item.style.visibility === 'hidden' ? 'visible' : 'hidden';
 
     }
