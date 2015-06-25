@@ -10,12 +10,24 @@
         this.timeoutId = setTimeout(toggleBlink.bind(this), interval);
         var item = this.shadowRoot.querySelector('#showing');
         item.style.visibility = item.style.visibility === 'hidden' ? 'visible' : 'hidden';
+    }
 
+    function toggleStyle() {
+        var interval = parseInt(this.getAttribute('interval')) || 1000;
+        this.timeoutId = setTimeout(toggleStyle.bind(this), interval);
+        var item = this.shadowRoot.querySelector('#showing');
+        item.currentSetting = !item.currentSetting;
+        var styleText = this.getAttribute('styles') || 'visibility: hidden';
+        var styles = styleText.split(',');
+        styles.forEach(function(style) {
+            keyVal = style.split(':');
+            item.style[keyVal[0].trim()] = item.currentSetting ? keyVal[1].trim() : '';
+        });
     }
 
     function loader() {
         var interval = parseInt(this.getAttribute('interval')) || 1000;
-        this.timeoutId = setTimeout(toggleBlink.bind(this), interval);
+        this.timeoutId = setTimeout(toggleStyle.bind(this), interval);
     }
 
     function cleanUp() {
@@ -25,5 +37,7 @@
     var proto = Object.create(HTMLElement.prototype);
     proto.createdCallback = loader;
     proto.detachedCallback = cleanUp;
+    proto.stop = cleanUp;
+    proto.start = loader;
     window.MyBlink = createElement('my-blink', '#template', proto);
 </script>
