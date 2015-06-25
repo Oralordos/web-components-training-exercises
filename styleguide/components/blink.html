@@ -19,6 +19,7 @@
     }
 
     function loader() {
+        clearStyle.call(this);
         var interval = parseInt(this.getAttribute('interval')) || 1000;
         this.timeoutId = setTimeout(toggleStyle.bind(this), interval);
     }
@@ -27,9 +28,20 @@
         clearTimeout(this.timeoutId);
     }
 
+    function clearStyle() {
+        var item = this.shadowRoot.querySelector('#showing');
+        for (var key in item.style) {
+            if (item.style.hasOwnProperty(key)) {
+                item.style[key] = '';
+            }
+        }
+        item.currentSetting = 0;
+    }
+
     var proto = Object.create(HTMLElement.prototype);
     proto.createdCallback = loader;
     proto.detachedCallback = cleanUp;
+    proto.attributeChangedCallback = clearStyle;
     proto.stop = cleanUp;
     proto.start = loader;
     window.MyBlink = createElement('my-blink', '#template', proto);
