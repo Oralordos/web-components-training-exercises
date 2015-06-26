@@ -12,6 +12,9 @@
         var styleText = this.getAttribute('styles') || 'visibility: hidden';
         var styleLevels = styleText.split('/');
         item.currentSetting = (item.currentSetting + 1) % (styleLevels.length + 1);
+        var detail = {newStyle: item.currentSetting ? styleLevels[item.currentSetting - 1] : ''};
+        var e = new CustomEvent('styleChanged', {detail: detail});
+        this.dispatchEvent(e);
         var styles = item.currentSetting ? styleLevels[item.currentSetting - 1].split(',') : [];
         clearStyle.call(this);
         styles.forEach(function(style) {
